@@ -1,13 +1,17 @@
 #include "commandOptions.h"
+#include "levelGen.h"
 #include "loadScreen.h"
 
 int main(int argc, char * argv[]) {
     // parse user options
-    struct Options O = getCommandArguments(argc, argv); 
+    struct Options Opt = getCommandArguments(argc, argv); 
     
-    loadScreen(&O);        
-        
+    loadScreen(&Opt);        
+    
+    levelGen();
+
     // clean-up
-    endwin();
+    cleanup(&Opt);
+
     return 0;
 }

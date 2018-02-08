@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <time.h>
 
-int main()
+#include "levelGen.h" 
+
+int levelGen()
 {
     int w = 100;
     int h = 100;
