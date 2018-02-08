@@ -6,5 +6,5 @@
 #include "commandOptions.h"
 
 int loadScreen(struct Options *);
-
+void cleanup(struct Options *);
 #endif

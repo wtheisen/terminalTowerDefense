@@ -5,6 +5,7 @@
 
 struct Options {
     int skipSplashScreen;
+    int disableNCurses;
 };
 
 //struct Options Options_Default = {0};
