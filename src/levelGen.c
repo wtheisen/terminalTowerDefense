@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 
-#include "levelGen.h" 
+#include "levelGen.h"
 
 int levelGen()
 {
@@ -26,8 +26,14 @@ int levelGen()
     srand(time(NULL));
     int currRow = rand() % lvlH;
 
+    if (currRow == 0) {
+        currRow++;
+    } else if (currRow == lvlH - 1) {
+        currRow--;
+    }
+
     for (i = 0; i < lvlW; i++, currSegLen++) {
-        if (currSegLen  >= 5) {
+        if (currSegLen  >= 5 && i + 2 <= lvlW) {
             if (currDir == 0) {
                 currDir = rand() % 3;
             } else {
