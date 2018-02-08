@@ -1,7 +1,11 @@
+#include "commandOptions.h"
 #include "loadScreen.h"
 
 int main(int argc, char * argv[]) {
-    loadScreen(1);        
+    // parse user options
+    struct Options O = getCommandArguments(argc, argv); 
+    
+    loadScreen(&O);        
         
     // clean-up
     endwin();

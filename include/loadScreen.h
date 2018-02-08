@@ -1,17 +1,10 @@
+#ifndef loadScreen_h
+#define loadScreen_h
+
 #include <ncurses.h>
 
-int loadScreen(int);
+#include "commandOptions.h"
 
-int loadScreen(int skip) {
-    // initialize the ncurses system
-    initscr();
-    noecho();
-    curs_set(FALSE); 
-        
-    if (skip) return 1;
-    
-    // show the load screen
-    
-    
-    return 1;
-}
+int loadScreen(struct Options *);
+
+#endif
