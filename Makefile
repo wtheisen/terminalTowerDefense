@@ -5,10 +5,10 @@ main=main.c
 libs=-lncurses
 src=src
 
-all: 
+all:
 	$(cc) $(src)/* -o $(binary) $(cflags) $(libs)
 
 clean:
-	rm $(binary)
-	
+	rm -f $(binary)
+
 
