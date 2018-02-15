@@ -9,10 +9,9 @@ int drawGrid(char level[SIZE][SIZE])
 
     int i = 0, j = 0;
     for (i = 0; i < SIZE; i++) {
-        int it;
-        for (it = 0; it < SIZE; it++) {
-            char c = level[i][it];
-            mvaddch(i, it, c);
+        for (j = 0; j < SIZE; j++) {
+            char c = level[i][j];
+            mvaddch(i, j, c);
         }
     }
 
