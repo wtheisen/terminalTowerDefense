@@ -1,8 +1,8 @@
 #include "commandOptions.h"
+#include "draw.h"
 #include "levelGen.h"
 #include "loadScreen.h"
 
-int drawGrid();
 
 int main(int argc, char * argv[])
 {
@@ -10,11 +10,14 @@ int main(int argc, char * argv[])
     struct Options Opt = getCommandArguments(argc, argv);
 
     loadScreen(&Opt);
-
-    drawGrid();
-    sleep(3);
-
-    levelGen();
+    
+    char level[SIZE][SIZE];
+    levelGen(level);
+    drawGrid(level);
+    
+    while (1) {
+        sleep(3);
+    }
 
     // clean-up
     cleanup(&Opt);
@@ -22,22 +25,4 @@ int main(int argc, char * argv[])
     return 0;
 }
 
-int drawGrid()
-{
-    int mx=0, my=0;
 
-    getmaxyx(stdscr, mx, my);
-
-    int i = 0, j = 0;
-    for (i = 0; i < my; i+=2) {
-        mvhline(i, 0, '-', mx);
-    }
-
-    for (j = 0; j < mx; j+=2) {
-        mvvline(0, j, '|', my);
-    }
-
-    refresh();
-
-    return 1;
-}

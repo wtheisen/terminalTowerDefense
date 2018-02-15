@@ -1,5 +1,8 @@
 #ifndef levelGen_h
 #define levelGen_h
 
-int levelGen();
+#define SIZE 20
+
+void levelGen(char level[SIZE][SIZE]);
+
 #endif 

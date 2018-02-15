@@ -4,14 +4,11 @@
 
 #include "levelGen.h"
 
-int levelGen()
+void levelGen(char level[SIZE][SIZE])
 {
-    int w = 100;
-    int h = 100;
-    int lvlW = w / 5;
-    int lvlH = h / 5;
+    int lvlW = SIZE;
+    int lvlH = SIZE;
 
-    char level[lvlW][lvlH];
 
     int i = 0, j = 0;
     for (i = 0; i < lvlW; i++) {
@@ -42,13 +39,13 @@ int levelGen()
             currSegLen = 0;
         }
 
-        printf("curr dir: %d\n", currDir);
+        //printf("curr dir: %d\n", currDir);
 
         if (currDir != 0) {
             level[currRow][i] = 'b';
             for (j = 0; j <= 5; j++) {
                 if (currDir == 2) {
-                    printf("drawing up\n");
+                    //printf("drawing up\n");
                     if (currRow - 2 <= 0) {
                         currDir = 0;
                         currSegLen = 0;
@@ -78,10 +75,8 @@ int levelGen()
 
     for (i = 0; i < lvlH; i++) {
         for (j = 0; j < lvlW; j++) {
-            printf("%c ", level[i][j]);
+            //printf("%c ", level[i][j]);
         }
-        printf("\n");
+        //printf("\n");
     }
-
-    return 0;
 }
