@@ -2,6 +2,8 @@
 #include "logging.h"
 #include "symbols.h"
 
+static int enemiesReached = 0;
+
 void advanceGame(char level[SIZE][SIZE]) {
     writeLog("Advancing game");
 
@@ -66,6 +68,10 @@ void advanceEnemy(char level[SIZE][SIZE], int i, int j) {
         writeLog("Advancing Enemy");
         level[i][j] = placeholder1;
         level[pathx][pathy] = walker - 32;
+    } else {
+        //we are one char away from the end
+        level[i][j] = path;
+        enemiesReached++;
     }
 }
 
