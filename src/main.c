@@ -1,5 +1,6 @@
 #include "commandOptions.h"
 #include "draw.h"
+#include "engine.h"
 #include "levelGen.h"
 #include "loadScreen.h"
 #include "logging.h"
@@ -22,7 +23,9 @@ int main(int argc, char * argv[])
     drawGrid(level);
     
     while (1) {
-        sleep(3);
+        sleep(1);
+        advanceGame(level);
+        drawGrid(level);
     }
 
     // clean-up

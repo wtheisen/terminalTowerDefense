@@ -1,10 +1,12 @@
 #ifndef symbols_h
 #define symbols_h
 
-char start = 'S';
-char end = 'E';
+extern char start;
+extern char end;
 
-char path = ' ';
-char weeds = '#';
+extern char path;
+extern char weeds;
+
+extern char walker;
 
 #endif

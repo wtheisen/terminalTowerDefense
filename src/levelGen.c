@@ -17,7 +17,7 @@ void levelGen(char level[SIZE][SIZE])
     int i = 0, j = 0;
     for (i = 0; i < lvlW; i++) {
         for (j = 0; j < lvlH; j++) {
-            level[i][j] = weeds;
+            setCoord(level, i, j, weeds);
         }
     }
 
@@ -87,6 +87,7 @@ void levelGen(char level[SIZE][SIZE])
 void setCoord(char level[SIZE][SIZE], int x, int y, char c){
     static int pathStarted = 0;
     static int pathEnded = 0;    
+
     //check if we should place the 'Start' char
     if (c == path) {
         if (!pathStarted)  {
