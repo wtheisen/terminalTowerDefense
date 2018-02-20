@@ -68,7 +68,7 @@ void getPathAround(char level[SIZE][SIZE], int i, int j, int * pathx, int * path
     int y1 = j - 1;
     int y2 = j + 1;
     if (isValid(x1)) {
-        if (level[x1][i] == path) {
+        if (level[x1][j] == path) {
             *pathx = x1;
             *pathy = j;
         }

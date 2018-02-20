@@ -1,5 +1,6 @@
 #include "draw.h"
 #include "levelGen.h"
+#include "symbols.h"
 
 int drawGrid(char level[SIZE][SIZE])
 {
@@ -10,6 +11,7 @@ int drawGrid(char level[SIZE][SIZE])
     for (i = 0; i < SIZE; i++) {
         for (j = 0; j < SIZE; j++) {
             char c = level[i][j];
+            if (c == placeholder) c = path;
             mvaddch(i, j, c);
         }
     }
