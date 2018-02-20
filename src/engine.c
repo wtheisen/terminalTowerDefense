@@ -11,18 +11,25 @@ void advanceGame(char level[SIZE][SIZE]) {
     for (i = 0; i < SIZE; i++) {
         for (j = 0; j < SIZE; j++) {
             char c = level[i][j];
-            if (c == placeholder) {
-                //level[i][j] = path;
+            if (c == placeholder1) {
+                level[i][j] = placeholder2;
+            } else if (c == placeholder2){
+                level[i][j] = path;
             } else if (isEnemy(c)) {
-                advanceEnemy(level, i, j, c); 
-                goto end;
-            }
-
-
+                advanceEnemy(level, i, j); 
+            } 
         }
     }
-end: ;
-    if (ctr == 0) spawnEnemy(level);
+
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
+            if (level[i][j] == walker - 32) {
+                level[i][j] = walker;
+            }
+        }
+    }
+    if (ctr % 5 == 0) spawnEnemy(level);
+    
     ctr++;
 }
 
@@ -50,15 +57,15 @@ int isEnemy(char c) {
     return 0;    
 }
 
-void advanceEnemy(char level[SIZE][SIZE], int i, int j, char c) {
+void advanceEnemy(char level[SIZE][SIZE], int i, int j) {
 
     int pathx = -1;
     int pathy = -1;
     getPathAround(level, i, j, &pathx, &pathy);
     if (pathx >= 0 || pathy >= 0) {
         writeLog("Advancing Enemy");
-        level[i][j] = placeholder;
-        level[pathx][pathy] = c;
+        level[i][j] = placeholder1;
+        level[pathx][pathy] = walker - 32;
     }
 }
 

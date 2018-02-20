@@ -11,7 +11,7 @@ int drawGrid(char level[SIZE][SIZE])
     for (i = 0; i < SIZE; i++) {
         for (j = 0; j < SIZE; j++) {
             char c = level[i][j];
-            if (c == placeholder) c = path;
+            if (c == placeholder2 || c == placeholder1) c = path;
             mvaddch(i, j, c);
         }
     }

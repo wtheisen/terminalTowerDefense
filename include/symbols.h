@@ -3,7 +3,8 @@
 
 extern char start;
 extern char end;
-extern char placeholder;
+extern char placeholder1;
+extern char placeholder2;
 
 extern char path;
 extern char weeds;
