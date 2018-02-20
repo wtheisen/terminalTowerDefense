@@ -3,9 +3,12 @@
 #include <time.h>
 
 #include "levelGen.h"
+#include "logging.h"
+#include "symbols.h"
 
 void levelGen(char level[SIZE][SIZE])
 {
+    
     int lvlW = SIZE;
     int lvlH = SIZE;
 
@@ -13,7 +16,7 @@ void levelGen(char level[SIZE][SIZE])
     int i = 0, j = 0;
     for (i = 0; i < lvlW; i++) {
         for (j = 0; j < lvlH; j++) {
-            level[i][j] = 'a';
+            level[i][j] = weeds;
         }
     }
 
@@ -28,6 +31,7 @@ void levelGen(char level[SIZE][SIZE])
     } else if (currRow == lvlH - 1) {
         currRow--;
     }
+    
 
     for (i = 0; i < lvlW; i++, currSegLen++) {
         if (currSegLen  >= 5 && i + 2 <= lvlW) {
@@ -39,17 +43,15 @@ void levelGen(char level[SIZE][SIZE])
             currSegLen = 0;
         }
 
-        //printf("curr dir: %d\n", currDir);
-
         if (currDir != 0) {
-            level[currRow][i] = 'b';
+            setCoord(level, currRow, i, path); 
             for (j = 0; j <= 5; j++) {
                 if (currDir == 2) {
                     //printf("drawing up\n");
                     if (currRow - 2 <= 0) {
                         currDir = 0;
                         currSegLen = 0;
-                        level[currRow][i] = 'b';
+                        setCoord(level, currRow, i, path); 
                         break;
                     } else {
                         currRow -= 1;
@@ -58,19 +60,19 @@ void levelGen(char level[SIZE][SIZE])
                     if (currRow + 2 >= lvlH) {
                         currDir = 0;
                         currSegLen = 0;
-                        level[currRow][i] = 'b';
+                        setCoord(level, currRow, i, path); 
                         break;
                     } else {
                         currRow += 1;
                     }
                 }
-                level[currRow][i] = 'b';
+                setCoord(level, currRow, i, path); 
             }
-            level[currRow][i] = 'b';
+            setCoord(level, currRow, i, path); 
             continue;
         }
 
-        level[currRow][i] = 'b';
+        setCoord(level, currRow, i, path); 
     }
 
     for (i = 0; i < lvlH; i++) {
@@ -79,4 +81,33 @@ void levelGen(char level[SIZE][SIZE])
         }
         //printf("\n");
     }
+}
+
+void setCoord(char level[SIZE][SIZE], int x, int y, char c){
+    static int pathStarted = 0;
+    static int pathEnded = 0;    
+    //check if we should place the 'Start' char
+    if (c == path) {
+        if (!pathStarted)  {
+            pathStarted = 1;
+            c = start;
+        }
+        else if ((y == (SIZE-1) || y == 0) && pathStarted) {
+            if (!pathEnded) {
+                pathEnded = 1;
+            } 
+
+            if (pathEnded) {
+                // an 'End' char has already been placed
+                if (x < SIZE - 2) {
+                    if (level[x+1][y] == end) level[x+1][y] = path;
+                }
+                if (x > 0) {
+                    if (level[x-1][y] == end) level[x-1][y] = path;
+                }
+            }
+            c = end;   
+        }
+    }
+    level[x][y] = c; 
 }
