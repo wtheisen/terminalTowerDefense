@@ -2,6 +2,7 @@
 
 char start = 'S';
 char end = 'E';
+char placeholder = '|';
 
 char path = ' ';
 char weeds = '#';
