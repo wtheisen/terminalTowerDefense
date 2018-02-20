@@ -3,9 +3,8 @@
 
 int drawGrid(char level[SIZE][SIZE])
 {
-    int mx, my;
-
-    getmaxyx(stdscr, mx, my);
+    //int mx, my;
+    //getmaxyx(stdscr, mx, my);
 
     int i = 0, j = 0;
     for (i = 0; i < SIZE; i++) {
