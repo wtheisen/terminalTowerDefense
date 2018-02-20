@@ -1,4 +1,5 @@
 #include <loadScreen.h>
+#include <logging.h>
 
 int loadScreen(struct Options * Opt)
 {
@@ -20,6 +21,7 @@ int loadScreen(struct Options * Opt)
 
 void cleanup(struct Options * Opt)
 {
+    writeLog("Cleaning up");
     if (!Opt->disableNCurses) {
         endwin();
     }

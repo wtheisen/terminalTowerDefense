@@ -8,7 +8,8 @@
 
 void levelGen(char level[SIZE][SIZE])
 {
-    
+    writeLog("Generating level");
+
     int lvlW = SIZE;
     int lvlH = SIZE;
 

@@ -14,9 +14,6 @@ int drawGrid(char level[SIZE][SIZE])
         }
     }
 
-    //for (j = 0; j < mx; j+=2) {
-        //mvvline(0, j, '|', my);
-    //}
 
     refresh();
 

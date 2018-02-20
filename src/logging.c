@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include <unistd.h>
 
 #include "logging.h"
@@ -20,9 +21,14 @@ int initLog(){
         logFilePtr = fp;
         if (!fp) return 0;       
     }
+
+    writeLog("Log Created");
     return 1;
 }
 
 void writeLog(char * message) {
-    fprintf(logFilePtr, "%s \n", message);
+    char timeStr[50];
+    time_t curTime = time(0);
+    strftime(timeStr, 50, "%H:%M:%S", localtime(&curTime));
+    fprintf(logFilePtr, "%s -- %s\n", message, timeStr);
 }
