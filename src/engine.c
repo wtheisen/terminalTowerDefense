@@ -4,8 +4,9 @@
 
 static int enemiesReached = 0;
 
-void advanceGame(char level[SIZE][SIZE]) {
-    writeLog("Advancing game");
+void advanceGame(char level[SIZE][SIZE])
+{
+    writeLog(__LINE__, __func__, "Advancing game");
 
     int i, j;
     static int ctr = 0;
@@ -18,8 +19,8 @@ void advanceGame(char level[SIZE][SIZE]) {
             } else if (c == placeholder2){
                 level[i][j] = path;
             } else if (isEnemy(c)) {
-                advanceEnemy(level, i, j); 
-            } 
+                advanceEnemy(level, i, j);
+            }
         }
     }
 
@@ -31,11 +32,12 @@ void advanceGame(char level[SIZE][SIZE]) {
         }
     }
     if (ctr % 5 == 0) spawnEnemy(level);
-    
+
     ctr++;
 }
 
-void spawnEnemy(char level[SIZE][SIZE]) {
+void spawnEnemy(char level[SIZE][SIZE])
+{
     //find the start
     int i, j;
     for (i = 0; i < SIZE; i++) {
@@ -49,23 +51,25 @@ start_found: ;
     int pathy = -1;
     getPathAround(level, i, j, &pathx, &pathy);
     if (pathx >= 0 || pathy >= 0) {
-        writeLog("Spawning an enemy");
+        writeLog(__LINE__, __func__, "Spawning an enemy");
         level[pathx][pathy] = walker;
     }
 }
 
-int isEnemy(char c) {
-    if (c == walker) return 1; 
-    return 0;    
+int isEnemy(char c)
+{
+    if (c == walker) return 1;
+    return 0;
 }
 
-void advanceEnemy(char level[SIZE][SIZE], int i, int j) {
+void advanceEnemy(char level[SIZE][SIZE], int i, int j)
+{
 
     int pathx = -1;
     int pathy = -1;
     getPathAround(level, i, j, &pathx, &pathy);
     if (pathx >= 0 || pathy >= 0) {
-        writeLog("Advancing Enemy");
+        writeLog(__LINE__, __func__, "Advancing Enemy");
         level[i][j] = placeholder1;
         level[pathx][pathy] = walker - 32;
     } else {
@@ -75,7 +79,8 @@ void advanceEnemy(char level[SIZE][SIZE], int i, int j) {
     }
 }
 
-void getPathAround(char level[SIZE][SIZE], int i, int j, int * pathx, int * pathy) {
+void getPathAround(char level[SIZE][SIZE], int i, int j, int * pathx, int * pathy)
+{
     int x1 = i - 1;
     int x2 = i + 1;
     int y1 = j - 1;
@@ -103,7 +108,8 @@ void getPathAround(char level[SIZE][SIZE], int i, int j, int * pathx, int * path
     }
 }
 
-int isValid(int x) {
+int isValid(int x)
+{
     if (x < 0 || x >= SIZE) return 0;
     return 1;
 }

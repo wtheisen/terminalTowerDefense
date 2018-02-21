@@ -4,24 +4,24 @@
 int loadScreen(struct Options * Opt)
 {
     // initialize the ncurses system
-    
+
     if (!Opt->disableNCurses) {
         initscr();
         noecho();
-        curs_set(FALSE); 
+        curs_set(FALSE);
     }
-    
+
     if (Opt->skipSplashScreen) return 1;
-    
+
     // show the load screen
-    
-    
+
+
     return 1;
 }
 
 void cleanup(struct Options * Opt)
 {
-    writeLog("Cleaning up");
+    writeLog(__LINE__, __func__, "Cleaning up");
     if (!Opt->disableNCurses) {
         endwin();
     }

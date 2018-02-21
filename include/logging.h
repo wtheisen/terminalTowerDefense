@@ -9,7 +9,8 @@
 extern FILE * logFilePtr;
 
 int initLog();
-void  writeLog(char *);
+int closeLog();
+void  writeLog(const int, const char*, char *);
 
 #endif
 

@@ -1,6 +1,6 @@
 binary=game
 cc=gcc
-cflags=-O2 -Wextra -Wall -Iinclude/ -g
+cflags= -std=c99 -O2 -Wextra -Wall -Iinclude/ -g
 main=main.c
 libs=-lncurses
 src=src

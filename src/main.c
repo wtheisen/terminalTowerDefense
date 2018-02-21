@@ -9,19 +9,19 @@ int main(int argc, char * argv[])
 {
     // parse user options
     struct Options Opt = getCommandArguments(argc, argv);
-    
+
     if (!initLog()) {
         puts("Error creating log file! Exiting ...");
-        return 1;       
+        return 1;
     }
-    
+
     loadScreen(&Opt);
 
 
     char level[SIZE][SIZE];
     levelGen(level);
     drawGrid(level);
-    
+
     while (1) {
         sleep(1);
         advanceGame(level);
@@ -29,6 +29,7 @@ int main(int argc, char * argv[])
     }
 
     // clean-up
+    closeLog();
     cleanup(&Opt);
 
     return 0;

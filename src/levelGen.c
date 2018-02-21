@@ -8,7 +8,7 @@
 
 void levelGen(char level[SIZE][SIZE])
 {
-    writeLog("Generating level");
+    writeLog(__LINE__, __func__, "Generating level");
 
     int lvlW = SIZE;
     int lvlH = SIZE;
@@ -32,7 +32,7 @@ void levelGen(char level[SIZE][SIZE])
     } else if (currRow == lvlH - 1) {
         currRow--;
     }
-    
+
 
     for (i = 0; i < lvlW; i++, currSegLen++) {
         if (currSegLen  >= 5 && i + 2 <= lvlW) {
@@ -45,14 +45,14 @@ void levelGen(char level[SIZE][SIZE])
         }
 
         if (currDir != 0) {
-            setCoord(level, currRow, i, path); 
+            setCoord(level, currRow, i, path);
             for (j = 0; j <= 5; j++) {
                 if (currDir == 2) {
                     //printf("drawing up\n");
                     if (currRow - 2 <= 0) {
                         currDir = 0;
                         currSegLen = 0;
-                        setCoord(level, currRow, i, path); 
+                        setCoord(level, currRow, i, path);
                         break;
                     } else {
                         currRow -= 1;
@@ -61,19 +61,19 @@ void levelGen(char level[SIZE][SIZE])
                     if (currRow + 2 >= lvlH) {
                         currDir = 0;
                         currSegLen = 0;
-                        setCoord(level, currRow, i, path); 
+                        setCoord(level, currRow, i, path);
                         break;
                     } else {
                         currRow += 1;
                     }
                 }
-                setCoord(level, currRow, i, path); 
+                setCoord(level, currRow, i, path);
             }
-            setCoord(level, currRow, i, path); 
+            setCoord(level, currRow, i, path);
             continue;
         }
 
-        setCoord(level, currRow, i, path); 
+        setCoord(level, currRow, i, path);
     }
 
     for (i = 0; i < lvlH; i++) {
@@ -84,9 +84,10 @@ void levelGen(char level[SIZE][SIZE])
     }
 }
 
-void setCoord(char level[SIZE][SIZE], int x, int y, char c){
+void setCoord(char level[SIZE][SIZE], int x, int y, char c)
+{
     static int pathStarted = 0;
-    static int pathEnded = 0;    
+    static int pathEnded = 0;
 
     //check if we should place the 'Start' char
     if (c == path) {
@@ -97,7 +98,7 @@ void setCoord(char level[SIZE][SIZE], int x, int y, char c){
         else if ((y == (SIZE-1) || y == 0) && pathStarted) {
             if (!pathEnded) {
                 pathEnded = 1;
-            } 
+            }
 
             if (pathEnded) {
                 // an 'End' char has already been placed
@@ -108,8 +109,8 @@ void setCoord(char level[SIZE][SIZE], int x, int y, char c){
                     if (level[x-1][y] == end) level[x-1][y] = path;
                 }
             }
-            c = end;   
+            c = end;
         }
     }
-    level[x][y] = c; 
+    level[x][y] = c;
 }

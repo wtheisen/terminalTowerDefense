@@ -18,9 +18,9 @@ struct Options getCommandArguments(int argc, char ** argv)
                 break;
             case ('d'):
                 O.disableNCurses = 1;
-                break; 
+                break;
         }
-    }    
-    
+    }
+
     return O;
 }
