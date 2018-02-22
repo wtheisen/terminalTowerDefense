@@ -40,7 +40,6 @@ int closeLog()
 
 void writeLog(const int lineNum, const char * callFunc, char * message)
 {
-    printf("logging\n");
     char timeStr[50];
     time_t curTime = time(0);
     strftime(timeStr, 50, "%H:%M:%S", localtime(&curTime));
