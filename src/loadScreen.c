@@ -21,7 +21,7 @@ int loadScreen(struct Options * Opt)
 
 void cleanup(struct Options * Opt)
 {
-    writeLog(__LINE__, __func__, "Cleaning up");
+    writeLog("Cleaning up");
     if (!Opt->disableNCurses) {
         endwin();
     }

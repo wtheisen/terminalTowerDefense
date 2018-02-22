@@ -6,7 +6,7 @@ static int enemiesReached = 0;
 
 void advanceGame(char level[SIZE][SIZE])
 {
-    writeLog(__LINE__, __func__, "Advancing game");
+    writeLog("Advancing game");
 
     int i, j;
     static int ctr = 0;
@@ -51,7 +51,7 @@ start_found: ;
     int pathy = -1;
     getPathAround(level, i, j, &pathx, &pathy);
     if (pathx >= 0 || pathy >= 0) {
-        writeLog(__LINE__, __func__, "Spawning an enemy");
+        writeLog("Spawning an enemy");
         level[pathx][pathy] = walker;
     }
 }
@@ -69,7 +69,7 @@ void advanceEnemy(char level[SIZE][SIZE], int i, int j)
     int pathy = -1;
     getPathAround(level, i, j, &pathx, &pathy);
     if (pathx >= 0 || pathy >= 0) {
-        writeLog(__LINE__, __func__, "Advancing Enemy");
+        writeLog("Advancing Enemy");
         level[i][j] = placeholder1;
         level[pathx][pathy] = walker - 32;
     } else {
