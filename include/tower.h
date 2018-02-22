@@ -1,14 +1,17 @@
 #ifndef tower_h
 #define tower_h
 
+#include "logging.h"
+
 struct tower
 {
     char type;
-    int x;
-    int y;
-    int (*shootFunc)(int, int);
+    int x, y;
+    enum { NORTH, SOUTH, EAST, WEST} fireDir;
+    int (*shoot)();
 };
+typedef struct tower tower;
 
-int shoot(int x, int y);
+int shoot(tower * self);
 
 #endif

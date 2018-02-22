@@ -3,7 +3,10 @@
 #include "engine.h"
 #include "levelGen.h"
 #include "loadScreen.h"
+#include "tower.h"
 #include "logging.h"
+
+void* objectMask[32][32];
 
 int main(int argc, char * argv[])
 {
@@ -17,6 +20,9 @@ int main(int argc, char * argv[])
 
     loadScreen(&Opt);
 
+    /* tower test = {'t', 0, 0, NORTH, shoot}; */
+
+    /* test.shoot(&test); */
 
     char level[SIZE][SIZE];
     levelGen(level);
