@@ -4,6 +4,7 @@
 
 #include "logging.h"
 
+
 FILE * logFilePtr;
 
 int initLog()
@@ -26,7 +27,7 @@ int initLog()
         }
     }
 
-    writeLog(__LINE__, __func__, "Log Created");
+    writeLog("Log Created");
     return 1;
 }
 
@@ -38,7 +39,7 @@ int closeLog()
     return 0;
 }
 
-void writeLog(const int lineNum, const char * callFunc, char * message)
+void writeLogLong(const int lineNum, const char * callFunc, char * message)
 {
     char timeStr[50];
     time_t curTime = time(0);

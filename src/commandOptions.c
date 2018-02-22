@@ -1,4 +1,5 @@
 #include "commandOptions.h"
+#include "getopt.h"
 
 void initOptions(struct Options * O) {
     O->skipSplashScreen = 0;

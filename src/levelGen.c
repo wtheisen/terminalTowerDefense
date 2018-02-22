@@ -8,7 +8,7 @@
 
 void levelGen(char level[SIZE][SIZE])
 {
-    writeLog(__LINE__, __func__, "Generating level");
+    writeLog("Generating level");
 
     int lvlW = SIZE;
     int lvlH = SIZE;
