@@ -3,16 +3,19 @@
 #include "engine.h"
 #include "levelGen.h"
 #include "loadScreen.h"
+#include "mouse.h"
 #include "objectLayer.h"
 #include "tower.h"
 #include "logging.h"
 
 void* objectMask[32][32];
 
+WINDOW * win = NULL;
+
 int main(int argc, char * argv[])
 {
-    initscr();
-        
+    win = initscr();
+    
     // parse user options
     struct Options Opt = getCommandArguments(argc, argv);
 
@@ -23,6 +26,7 @@ int main(int argc, char * argv[])
         puts("Terminal doesn't support colors! Exiting ...");
         return 1;
     }
+    
     
     start_color();
     init_pair(1, COLOR_RED, COLOR_BLACK);
@@ -38,7 +42,8 @@ int main(int argc, char * argv[])
 
     char level[SIZE][SIZE];
     levelGen(level);
-    drawGrid(level);
+    addTowers(level);
+
 
     while (1) {
         sleep(1);

@@ -15,7 +15,11 @@ void initObjectLayer()
 
 void addObject(void * o, int type)
 {
-    if (type == 2) {
+    if (type == 1) {
+        tower * t = t;
+        objLayer[t->x][t->y] = t;
+        writeLog("Added Tower to Object Layer");
+    } else if (type == 2) {
         enemy * e = o;
         objLayer[e->x][e->y] = e;
         writeLog("Added Enemy to Object Layer");

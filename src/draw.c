@@ -1,7 +1,9 @@
 #include "draw.h"
 #include "engine.h"
 #include "levelGen.h"
+#include "mouse.h"
 #include "symbols.h"
+
 
 int drawGrid(char level[SIZE][SIZE])
 {
@@ -24,8 +26,12 @@ int drawGrid(char level[SIZE][SIZE])
         }
     }
 
-    mvprintw(1, SIZE + 2, "Killed: %d", enemiesKilled);
-    mvprintw(3, SIZE + 2, "Reached: %d", enemiesReached);
+    if (towersRemaining > 0) {
+        mvprintw(1, SIZE +2, "Place %d more towers!", towersRemaining);
+    } else { 
+        mvprintw(1, SIZE + 2, "Killed: %d           ", enemiesKilled);
+        mvprintw(3, SIZE + 2, "Reached: %d", enemiesReached);
+}
     refresh();
 
     return 1;

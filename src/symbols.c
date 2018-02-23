@@ -9,3 +9,5 @@ char path = ' ';
 char weeds = '#';
 
 char walker = 'O';
+char shooter = 'T';
+

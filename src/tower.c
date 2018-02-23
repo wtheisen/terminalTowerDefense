@@ -1,5 +1,15 @@
 #include "tower.h"
 
+tower newTower(int x, int y)
+{
+    tower t;
+    t.type = 1;
+    t.x = x;
+    t.y = y;
+    
+    return t;
+}
+
 int shoot(tower * self)
 {
     //x is the direction, as is y. 0,0 is assumed the be the bottom right corner
