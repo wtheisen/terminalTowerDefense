@@ -7,9 +7,6 @@
 
 int drawGrid(char level[SIZE][SIZE])
 {
-    //int mx, my;
-    //getmaxyx(stdscr, mx, my);
-    
     
     int i = 0, j = 0;
     for (i = 0; i < SIZE; i++) {
@@ -20,8 +17,12 @@ int drawGrid(char level[SIZE][SIZE])
                 attron(COLOR_PAIR(1)); 
                 mvaddch(i, j, c);
                 attroff(COLOR_PAIR(1));
+            } else if (c == shooter) {
+                attron(COLOR_PAIR(2));
+                mvaddch(i, j, c);
+                attroff(COLOR_PAIR(2));        
             } else {
-                mvaddch(i, j, c); 
+                mvaddch(i, j, c);
             }
         }
     }

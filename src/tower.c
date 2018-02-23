@@ -1,11 +1,13 @@
+#include <stdlib.h>
+
 #include "tower.h"
 
-tower newTower(int x, int y)
+tower * newTower(int x, int y)
 {
-    tower t;
-    t.type = 1;
-    t.x = x;
-    t.y = y;
+    tower * t = malloc(sizeof(*t));
+    t->type = 1;
+    t->x = x;
+    t->y = y;
     
     return t;
 }

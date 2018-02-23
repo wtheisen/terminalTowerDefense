@@ -56,8 +56,8 @@ start_found: ;
     if (pathx >= 0 || pathy >= 0) {
         level[pathx][pathy] = walker;
         
-        enemy e = newEnemy(pathx, pathy);
-        addObject((void *) &e, e.type); 
+        enemy * e = newEnemy(pathx, pathy);
+        addObject((void *) e, e->type); 
     }
 }
 

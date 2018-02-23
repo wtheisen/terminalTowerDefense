@@ -13,6 +13,6 @@ struct tower
 typedef struct tower tower;
 
 int shoot(tower * self);
-tower newTower(int, int);
+tower * newTower(int, int);
 
 #endif

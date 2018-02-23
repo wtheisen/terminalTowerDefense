@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "enemy.h"
 
 /*int shoot(enemy * self)
@@ -23,13 +25,13 @@
     return 0;
 }*/
 
-enemy newEnemy(int x, int y) 
+enemy * newEnemy(int x, int y) 
 {
-    enemy e;
-    e.type = 2; 
-    e.x = x;
-    e.y = y;
-    e.hp = 5;
+    enemy * e = malloc(sizeof(*e));
+    e->type = 2; 
+    e->x = x;
+    e->y = y;
+    e->hp = 5;
     
     return e; 
 }

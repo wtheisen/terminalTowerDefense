@@ -13,9 +13,8 @@ extern WINDOW * win;
 void addTowers(char level[SIZE][SIZE]) {
     drawGrid(level);
 
-    // declare what mouse interactions to catch
     mousemask(ALL_MOUSE_EVENTS, NULL);
-    keypad(win, TRUE);
+    keypad(win, TRUE); 
     
     char buffer[100];
 
@@ -27,12 +26,19 @@ void addTowers(char level[SIZE][SIZE]) {
             case KEY_MOUSE:
                 if (getmouse(&event) == OK) {
                     if (event.bstate & BUTTON1_CLICKED) {
+                        
+                        if (event.x >= SIZE || event.y >= SIZE) continue;
+
                         sprintf(buffer, "Mouse clicked at %d,%d", event.y, event.x);
                         writeLog(buffer);                        
+
+                        if (level[event.y][event.x] != weeds) continue;
                         
-                        //add a tower
-                        //tower t = newTower(event.y, event.x);
-                        //addObject((void *) &t, t.type);
+                        tower * t = newTower(event.y, event.x);
+                        sprintf(buffer, "%p", t);
+                        writeLog(buffer);
+                        addObject((void *) t, t->type);
+                        
                         level[event.y][event.x] = shooter;
                         towersRemaining--;
                         

@@ -16,7 +16,7 @@ void initObjectLayer()
 void addObject(void * o, int type)
 {
     if (type == 1) {
-        tower * t = t;
+        tower * t = o;
         objLayer[t->x][t->y] = t;
         writeLog("Added Tower to Object Layer");
     } else if (type == 2) {
