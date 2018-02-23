@@ -1,3 +1,5 @@
+#include <signal.h>
+
 #include "commandOptions.h"
 #include "draw.h"
 #include "engine.h"
@@ -11,9 +13,14 @@
 void* objectMask[32][32];
 
 WINDOW * win = NULL;
+static volatile int stop = 0;
+
+void handler(int);
 
 int main(int argc, char * argv[])
 {
+    signal(SIGINT, handler);
+
     win = initscr();
     
     // parse user options
@@ -46,17 +53,22 @@ int main(int argc, char * argv[])
     addTowers(level);
 
 
-    while (1) {
+    while (!stop) {
         sleep(1);
         advanceGame(level);
         drawGrid(level);
     }
 
     // clean-up
-    closeLog();
+    freeObjects();
     cleanup(&Opt);
+    closeLog();
 
     return 0;
 }
 
+void handler(int sig) {
+    (void) sig;
+    stop = 1;
+}   
 

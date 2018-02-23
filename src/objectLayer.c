@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "objectLayer.h"
 #include "logging.h"
 
@@ -36,9 +38,19 @@ void moveObject(int oldX, int oldY, int newX, int newY)
 
 void deleteObject(int x, int y)
 {
+    free(objLayer[x][y]);
+
     objLayer[x][y] = (void *) NULL;
     writeLog("Removed Enemy Object from Object Layer");
 }
 
+void freeObjects() {
+    int i, j;
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
+            if (objLayer[i][j] != NULL) free(objLayer[i][j]);
+        }
+    }
+}
 
 
