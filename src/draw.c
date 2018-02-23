@@ -14,7 +14,13 @@ int drawGrid(char level[SIZE][SIZE])
         for (j = 0; j < SIZE; j++) {
             char c = level[i][j];
             if (c == crumb2 || c == crumb1) c = path;
-            mvaddch(i, j, c);
+            if (c == walker) {
+                attron(COLOR_PAIR(1)); 
+                mvaddch(i, j, c);
+                attroff(COLOR_PAIR(1));
+            } else {
+                mvaddch(i, j, c); 
+            }
         }
     }
 

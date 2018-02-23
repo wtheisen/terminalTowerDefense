@@ -6,7 +6,6 @@ int loadScreen(struct Options * Opt)
     // initialize the ncurses system
 
     if (!Opt->disableNCurses) {
-        initscr();
         noecho();
         curs_set(FALSE);
     }
