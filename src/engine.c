@@ -4,7 +4,9 @@
 #include "objectLayer.h"
 #include "symbols.h"
 
-static int enemiesReached = 0;
+
+int enemiesReached = 0; 
+int enemiesKilled = 0;
 
 void advanceGame(char level[SIZE][SIZE])
 {
@@ -79,6 +81,7 @@ void advanceEnemy(char level[SIZE][SIZE], int i, int j)
     } else {
         //we are one char away from the end
         level[i][j] = path;
+        deleteObject(i, j);
         enemiesReached++;
     }
 }
