@@ -22,3 +22,14 @@
 
     return 0;
 }*/
+
+enemy newEnemy(int x, int y) 
+{
+    enemy e;
+    e.type = 2; 
+    e.x = x;
+    e.y = y;
+    e.hp = 5;
+    
+    return e; 
+}

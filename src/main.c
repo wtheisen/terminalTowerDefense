@@ -3,6 +3,7 @@
 #include "engine.h"
 #include "levelGen.h"
 #include "loadScreen.h"
+#include "objectLayer.h"
 #include "tower.h"
 #include "logging.h"
 
@@ -17,6 +18,8 @@ int main(int argc, char * argv[])
         puts("Error creating log file! Exiting ...");
         return 1;
     }
+
+    initObjectLayer();
 
     loadScreen(&Opt);
 

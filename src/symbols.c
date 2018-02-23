@@ -2,8 +2,8 @@
 
 char start = 'S';
 char end = 'E';
-char placeholder1 = '1';
-char placeholder2 = '2';
+char crumb1 = '1';
+char crumb2 = '2';
 
 char path = ' ';
 char weeds = '#';

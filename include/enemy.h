@@ -13,6 +13,8 @@ struct enemy
 
 typedef struct enemy enemy;
 
+enemy newEnemy(int, int);
+
 //int shoot(enemy * self);
 
 #endif

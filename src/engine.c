@@ -1,12 +1,13 @@
+#include "enemy.h"
 #include "engine.h"
 #include "logging.h"
+#include "objectLayer.h"
 #include "symbols.h"
 
 static int enemiesReached = 0;
 
 void advanceGame(char level[SIZE][SIZE])
 {
-    writeLog("Advancing game");
 
     int i, j;
     static int ctr = 0;
@@ -14,9 +15,9 @@ void advanceGame(char level[SIZE][SIZE])
     for (i = 0; i < SIZE; i++) {
         for (j = 0; j < SIZE; j++) {
             char c = level[i][j];
-            if (c == placeholder1) {
-                level[i][j] = placeholder2;
-            } else if (c == placeholder2){
+            if (c == crumb1) {
+                level[i][j] = crumb2;
+            } else if (c == crumb2){
                 level[i][j] = path;
             } else if (isEnemy(c)) {
                 advanceEnemy(level, i, j);
@@ -51,8 +52,10 @@ start_found: ;
     int pathy = -1;
     getPathAround(level, i, j, &pathx, &pathy);
     if (pathx >= 0 || pathy >= 0) {
-        writeLog("Spawning an enemy");
         level[pathx][pathy] = walker;
+        
+        enemy e = newEnemy(pathx, pathy);
+        addObject((void *) &e, e.type); 
     }
 }
 
@@ -69,9 +72,10 @@ void advanceEnemy(char level[SIZE][SIZE], int i, int j)
     int pathy = -1;
     getPathAround(level, i, j, &pathx, &pathy);
     if (pathx >= 0 || pathy >= 0) {
-        writeLog("Advancing Enemy");
-        level[i][j] = placeholder1;
+        level[i][j] = crumb1;
         level[pathx][pathy] = walker - 32;
+        moveObject(i, j, pathx, pathy);
+
     } else {
         //we are one char away from the end
         level[i][j] = path;
