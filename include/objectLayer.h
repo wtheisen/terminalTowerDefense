@@ -10,6 +10,7 @@ extern void * objLayer[SIZE][SIZE];
 
 void initObjectLayer();
 void addObject(void *, int);
+int activateObject(int, int , int);
 void moveObject(int, int, int, int);
 void deleteObject(int, int);
 void freeObjects();

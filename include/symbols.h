@@ -10,6 +10,7 @@ extern char path;
 extern char weeds;
 
 extern char walker;
-extern char shooter; 
+extern char shooter;
+extern char laser;
 
 #endif

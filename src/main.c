@@ -22,7 +22,7 @@ int main(int argc, char * argv[])
     signal(SIGINT, handler);
 
     win = initscr();
-    
+
     // parse user options
     struct Options Opt = getCommandArguments(argc, argv);
 
@@ -33,14 +33,12 @@ int main(int argc, char * argv[])
         puts("Terminal doesn't support colors! Exiting ...");
         return 1;
     }
-    
-    
+
     start_color();
     init_pair(1, COLOR_RED, COLOR_BLACK);
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
 
     initObjectLayer();
-     
 
     loadScreen(&Opt);
 
@@ -51,7 +49,7 @@ int main(int argc, char * argv[])
     char level[SIZE][SIZE];
     levelGen(level);
     addTowers(level);
-
+    defProjLayer();
 
     while (!stop) {
         sleep(1);
@@ -70,5 +68,5 @@ int main(int argc, char * argv[])
 void handler(int sig) {
     (void) sig;
     stop = 1;
-}   
+}
 

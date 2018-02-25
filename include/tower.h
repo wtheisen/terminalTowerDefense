@@ -1,7 +1,11 @@
 #ifndef tower_h
 #define tower_h
 
+#include <stdlib.h>
+#include <ncurses.h>
+
 #include "logging.h"
+#include "levelGen.h"
 
 struct tower
 {
@@ -11,6 +15,8 @@ struct tower
     int (*shoot)();
 };
 typedef struct tower tower;
+
+extern char projectileLayer[SIZE][SIZE];
 
 int shoot(tower * self);
 tower * newTower(int, int);

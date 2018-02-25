@@ -12,7 +12,7 @@ void initObjectLayer()
         for (j = 0; j < SIZE; j++) {
             objLayer[i][j] = (void *) NULL;
         }
-    } 
+    }
 }
 
 void addObject(void * o, int type)
@@ -26,6 +26,20 @@ void addObject(void * o, int type)
         objLayer[e->x][e->y] = e;
         writeLog("Added Enemy to Object Layer");
     }
+}
+
+int activateObject(int type, int x, int y)
+{
+    writeLog("activating object");
+    if (type == 1) {
+        tower *t = objLayer[x][y];
+        t->shoot(t);
+    } else if (type == 2) {
+        enemy *e = objLayer[x][y];
+        return e->hit(e);
+    }
+
+    return 0;
 }
 
 void moveObject(int oldX, int oldY, int newX, int newY)

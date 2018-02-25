@@ -5,8 +5,18 @@
 #include "symbols.h"
 
 
-int enemiesReached = 0; 
+int enemiesReached = 0;
 int enemiesKilled = 0;
+
+void defProjLayer()
+{
+    int i, j;
+    for (i = 0; i < SIZE; i++) {
+        for (j = 0; j < SIZE; j++) {
+            projectileLayer[i][j] = 'a';
+        }
+    }
+}
 
 void advanceGame(char level[SIZE][SIZE])
 {
@@ -21,6 +31,8 @@ void advanceGame(char level[SIZE][SIZE])
                 level[i][j] = crumb2;
             } else if (c == crumb2){
                 level[i][j] = path;
+            } else if (isShooter(c) && (ctr % 3 == 0)) {
+                fireShooter(i, j);
             } else if (isEnemy(c)) {
                 advanceEnemy(level, i, j);
             }
@@ -55,9 +67,9 @@ start_found: ;
     getPathAround(level, i, j, &pathx, &pathy);
     if (pathx >= 0 || pathy >= 0) {
         level[pathx][pathy] = walker;
-        
+
         enemy * e = newEnemy(pathx, pathy);
-        addObject((void *) e, e->type); 
+        addObject((void *) e, e->type);
     }
 }
 
@@ -65,6 +77,24 @@ int isEnemy(char c)
 {
     if (c == walker) return 1;
     return 0;
+}
+
+int isShooter(char c)
+{
+    if (c == shooter) return 1;
+    return 0;
+}
+
+void fireShooter(int x, int y)
+{
+    /* printf("found tower at x: %d, y: %d", x, y); */
+    activateObject(1, x, y);
+}
+
+int hitWalker(int x, int y)
+{
+    writeLog("hitting enemy");
+    return activateObject(2, x, y);
 }
 
 void advanceEnemy(char level[SIZE][SIZE], int i, int j)
@@ -77,7 +107,6 @@ void advanceEnemy(char level[SIZE][SIZE], int i, int j)
         level[i][j] = crumb1;
         level[pathx][pathy] = walker - 32;
         moveObject(i, j, pathx, pathy);
-
     } else {
         //we are one char away from the end
         level[i][j] = path;

@@ -3,36 +3,51 @@
 #include "levelGen.h"
 #include "mouse.h"
 #include "symbols.h"
+#include "logging.h"
 
 
 int drawGrid(char level[SIZE][SIZE])
 {
-    
+
     int i = 0, j = 0;
     for (i = 0; i < SIZE; i++) {
         for (j = 0; j < SIZE; j++) {
             char c = level[i][j];
             if (c == crumb2 || c == crumb1) c = path;
             if (c == walker) {
-                attron(COLOR_PAIR(1)); 
+                attron(COLOR_PAIR(1));
                 mvaddch(i, j, c);
                 attroff(COLOR_PAIR(1));
             } else if (c == shooter) {
                 attron(COLOR_PAIR(2));
                 mvaddch(i, j, c);
-                attroff(COLOR_PAIR(2));        
+                attroff(COLOR_PAIR(2));
             } else {
                 mvaddch(i, j, c);
+            }
+            if (projectileLayer[i][j] == 'b') {
+                attron(COLOR_PAIR(2));
+                if (c == walker) {
+                    writeLog("enemy - laser collision");
+                    if (hitWalker(i, j)) {
+                        mvaddch(i, j, c);
+                    }
+                } else {
+                    mvaddch(i, j, laser);
+                }
+                attroff(COLOR_PAIR(2));
             }
         }
     }
 
+    defProjLayer();
+
     if (towersRemaining > 0) {
         mvprintw(1, SIZE +2, "Place %d more towers!", towersRemaining);
-    } else { 
+    } else {
         mvprintw(1, SIZE + 2, "Killed: %d           ", enemiesKilled);
         mvprintw(3, SIZE + 2, "Reached: %d", enemiesReached);
-}
+    }
     refresh();
 
     return 1;
