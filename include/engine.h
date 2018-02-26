@@ -10,7 +10,7 @@ extern int currEnergy;
 char projectileLayer[SIZE][SIZE];
 
 void defProjLayer();
-void advanceGame(char level[SIZE][SIZE]);
+void advanceGame(char level[SIZE][SIZE], int spawnFactor);
 
 void spawnEnemy(char level[SIZE][SIZE]);
 int isEnemy(char c);

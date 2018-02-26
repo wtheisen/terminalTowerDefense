@@ -53,9 +53,11 @@ int main(int argc, char * argv[])
     addTowers(level);
     defProjLayer();
 
+    int spawnFactor = 5;
+
     while (!stop) {
         sleep(1);
-        advanceGame(level);
+        advanceGame(level, spawnFactor);
         drawGrid(level);
     }
 

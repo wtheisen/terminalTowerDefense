@@ -18,7 +18,7 @@ void defProjLayer()
     }
 }
 
-void advanceGame(char level[SIZE][SIZE])
+void advanceGame(char level[SIZE][SIZE], int spawnFactor)
 {
 
     int i, j;
@@ -46,7 +46,8 @@ void advanceGame(char level[SIZE][SIZE])
             }
         }
     }
-    if (ctr % 5 == 0) spawnEnemy(level);
+
+    if (ctr % spawnFactor == 0) spawnEnemy(level);
 
     ctr++;
 }
@@ -94,7 +95,7 @@ void fireShooter(int x, int y)
 int hitWalker(char level[SIZE][SIZE], int x, int y)
 {
     int ret = activateObject(2, x, y);
-    if (ret == 0) {
+    if (ret == 1) {
         level[x][y] = path;
         enemiesKilled++;
         currEnergy++;

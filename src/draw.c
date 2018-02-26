@@ -19,13 +19,16 @@ int drawGrid(char level[SIZE][SIZE])
                 if (projectileLayer[i][j] == 'b') {
                     writeLog("enemy - laser collision");
                     if (hitWalker(level, i, j)) {
-                        c = level[i][j];
-                        mvaddch(i, j, c);
+                        /* c = level[i][j]; */
+                        attroff(COLOR_PAIR(1));
+                        attron(COLOR_PAIR(3));
+                        mvaddch(i, j, walker);
                     }
                 } else {
                     mvaddch(i, j, walker);
                 }
                 attroff(COLOR_PAIR(1));
+                attroff(COLOR_PAIR(3));
             }else if (strchr("NESW", c) != NULL) {
                 attron(COLOR_PAIR(2));
                 switch(c)
@@ -70,9 +73,9 @@ int drawGrid(char level[SIZE][SIZE])
     if (currEnergy > 0 && enemiesKilled == 0) {
         mvprintw(1, SIZE +2, "Place %d more towers!", currEnergy / 5);
     } else {
-        mvprintw(1, SIZE + 2, "Killed: %d           ", enemiesKilled);
+        mvprintw(1, SIZE + 2, "Killed:  %d           ", enemiesKilled);
         mvprintw(3, SIZE + 2, "Reached: %d", enemiesReached);
-        mvprintw(5, SIZE + 2, "Energy: %d", currEnergy);
+        mvprintw(5, SIZE + 2, "Energy:  %d", currEnergy);
     }
     refresh();
 

@@ -45,8 +45,8 @@ int hit(enemy * self)
 
     if (self->hp <= 0) {
         deleteObject(self->x, self->y);
-        return 0;
+        return 1;
     }
 
-    return 1;
+    return 0;
 }
