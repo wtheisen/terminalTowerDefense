@@ -38,6 +38,10 @@ int activateObject(int type, int x, int y)
         tower *t = objLayer[x][y];
         t->shoot(t);
     } else if (type == 2) {
+        if (!objLayer[x][y]) {
+            writeLog("Attempting to hit a NULL object!");
+            return 0;
+        }
         enemy *e = objLayer[x][y];
         return e->hit(e);
     }
