@@ -107,6 +107,7 @@ int hitWalker(char level[SIZE][SIZE], int x, int y)
         currEnergy++;
         writeLog("Removing enemy!");
     }
+    
     return 1;
 }
 
