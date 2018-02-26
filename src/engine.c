@@ -97,6 +97,7 @@ int hitWalker(char level[SIZE][SIZE], int x, int y)
     if (ret == 0) {
         level[x][y] = path;
         enemiesKilled++;
+        currEnergy++;
         writeLog("Removing enemy!");
     }
     return ret;

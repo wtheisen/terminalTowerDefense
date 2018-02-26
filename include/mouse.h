@@ -3,8 +3,7 @@
 
 #include <string.h>
 #include "levelGen.h"
-
-extern int towersRemaining;
+#include "engine.h"
 
 void addTowers(char level[SIZE][SIZE]);
 

@@ -67,11 +67,12 @@ int drawGrid(char level[SIZE][SIZE])
 
     defProjLayer();
 
-    if (towersRemaining > 0) {
-        mvprintw(1, SIZE +2, "Place %d more towers!", towersRemaining);
+    if (currEnergy > 0 && enemiesKilled == 0) {
+        mvprintw(1, SIZE +2, "Place %d more towers!", currEnergy / 5);
     } else {
         mvprintw(1, SIZE + 2, "Killed: %d           ", enemiesKilled);
         mvprintw(3, SIZE + 2, "Reached: %d", enemiesReached);
+        mvprintw(5, SIZE + 2, "Energy: %d", currEnergy);
     }
     refresh();
 

@@ -7,7 +7,7 @@
 #include "symbols.h"
 #include "tower.h"
 
-int towersRemaining = 5;
+int currEnergy = 15;
 extern WINDOW * win;
 
 void addTowers(char level[SIZE][SIZE]) {
@@ -20,7 +20,7 @@ void addTowers(char level[SIZE][SIZE]) {
 
     MEVENT event;
 
-    while (towersRemaining > 0) {
+    while (currEnergy > 0) {
         int c = wgetch(win);
         switch(c) {
             case KEY_MOUSE:
@@ -61,7 +61,7 @@ void addTowers(char level[SIZE][SIZE]) {
                         addObject((void *) t, t->type);
 
                         level[event.y][event.x] = shooter;
-                        towersRemaining--;
+                        currEnergy-=5;
 
                     } else {
                         writeLog("Unknown Mousepress");
