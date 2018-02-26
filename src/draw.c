@@ -19,7 +19,6 @@ int drawGrid(char level[SIZE][SIZE])
                 if (projectileLayer[i][j] == 'b') {
                     writeLog("enemy - laser collision");
                     if (hitWalker(level, i, j)) {
-                        /* c = level[i][j]; */
                         attroff(COLOR_PAIR(1));
                         attron(COLOR_PAIR(3));
                         mvaddch(i, j, walker);

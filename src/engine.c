@@ -94,14 +94,13 @@ void fireShooter(int x, int y)
 
 int hitWalker(char level[SIZE][SIZE], int x, int y)
 {
-    int ret = activateObject(2, x, y);
-    if (ret == 1) {
+    if (activateObject(2, x, y)) {
         level[x][y] = path;
         enemiesKilled++;
         currEnergy++;
         writeLog("Removing enemy!");
     }
-    return ret;
+    return 1;
 }
 
 void advanceEnemy(char level[SIZE][SIZE], int i, int j)
