@@ -7,7 +7,9 @@
 extern int enemiesReached;
 extern int enemiesKilled;
 extern int enemiesSpawnedWave;
+extern int enemiesRemaining;
 extern int currEnergy;
+extern int currWave;
 char projectileLayer[SIZE][SIZE];
 
 void defProjLayer();

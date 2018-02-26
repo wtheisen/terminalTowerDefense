@@ -50,16 +50,27 @@ int main(int argc, char * argv[])
 
     char level[SIZE][SIZE];
     levelGen(level);
-    addTowers(level);
-    defProjLayer();
+    int enemiesInWave = 3;
+    currWave = 0;
 
-    int spawnFactor = 5;
-    enemiesSpawnedWave = 0;
+    while (!stop)
+    {
+        int spawnFactor = 5;
+        enemiesSpawnedWave = 0;
 
-    while (!stop) {
-        sleep(1);
-        advanceGame(level, spawnFactor);
-        drawGrid(level);
+        enemiesRemaining = enemiesInWave - enemiesSpawnedWave;
+        addTowers(level);
+        defProjLayer();
+
+        while (enemiesSpawnedWave < enemiesInWave) {
+            sleep(1);
+            enemiesSpawnedWave = advanceGame(level, spawnFactor);
+            enemiesRemaining = enemiesInWave - enemiesSpawnedWave;
+            drawGrid(level);
+        }
+
+        enemiesInWave += 2;
+        currWave++;
     }
 
     // clean-up

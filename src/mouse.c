@@ -20,7 +20,7 @@ void addTowers(char level[SIZE][SIZE]) {
 
     MEVENT event;
 
-    while (currEnergy > 0) {
+    while (currEnergy >= 5) {
         int c = wgetch(win);
         switch(c) {
             case KEY_MOUSE:

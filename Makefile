@@ -1,4 +1,5 @@
 binary=game
+log=valgrind.log
 cc=gcc
 cflags= -std=c99 -O2 -Wextra -Wall -Iinclude/ -g
 main=main.c
@@ -9,9 +10,9 @@ all:
 	$(cc) $(src)/* -o $(binary) $(cflags) $(libs)
 
 debug: all
-	valgrind --log-file="valgrind.log" ./$(binary)
+	valgrind --log-file="$(log)" ./$(binary)
 
 clean:
-	rm -f $(binary)
+	rm -f $(binary) $(log)
 
 

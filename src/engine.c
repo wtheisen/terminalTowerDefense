@@ -8,6 +8,8 @@
 int enemiesReached = 0;
 int enemiesKilled = 0;
 int enemiesSpawnedWave = 0;
+int enemiesRemaining = 0;
+int currWave = 1;
 
 void defProjLayer()
 {

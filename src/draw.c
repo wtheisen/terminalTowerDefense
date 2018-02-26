@@ -76,6 +76,9 @@ int drawGrid(char level[SIZE][SIZE])
         mvprintw(3, SIZE + 2, "Reached: %d", enemiesReached);
         mvprintw(5, SIZE + 2, "Energy:  %d", currEnergy);
     }
+
+    mvprintw(SIZE + 1, SIZE / 3, "Enemies Remaining in Wave %d:  %d", currWave, enemiesRemaining);
+
     refresh();
 
     return 1;

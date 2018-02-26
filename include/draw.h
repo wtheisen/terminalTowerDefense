@@ -2,7 +2,8 @@
 #define draw_h
 
 #include "ncurses.h"
+#include "levelGen.h"
 
-int drawGrid();
+int drawGrid(char level[SIZE][SIZE]);
 
 #endif
