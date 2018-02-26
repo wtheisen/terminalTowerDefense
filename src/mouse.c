@@ -32,6 +32,27 @@ void addTowers(char level[SIZE][SIZE]) {
                         sprintf(buffer, "Mouse clicked at %d,%d", event.y, event.x);
                         writeLog(buffer);
 
+                        if (strchr("NESW", level[event.y][event.x]) != NULL) {
+                            switch(level[event.y][event.x])
+                            {
+                                case 'N':
+                                    level[event.y][event.x] = 'E';
+                                    break;
+                                case 'E':
+                                    level[event.y][event.x] = 'S';
+                                    break;
+                                case 'S':
+                                    level[event.y][event.x] = 'W';
+                                    break;
+                                case 'W':
+                                    level[event.y][event.x] = 'N';
+                                    break;
+                            }
+                            rotateObject(event.y, event.x);
+                            drawGrid(level);
+                            refresh();
+                            continue;
+                        }
                         if (level[event.y][event.x] != weeds) continue;
 
                         tower * t = newTower(event.y, event.x);

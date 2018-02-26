@@ -26,17 +26,17 @@ int drawGrid(char level[SIZE][SIZE])
                     mvaddch(i, j, walker);
                 }
                 attroff(COLOR_PAIR(1));
-            }else if (c == shooter) {
+            }else if (strchr("NESW", c) != NULL) {
                 attron(COLOR_PAIR(2));
                 mvaddch(i, j, c);
                 attroff(COLOR_PAIR(2));
             } else {
                 if (projectileLayer[i][j] == 'b') {
-                    attron(COLOR_PAIR(1));
+                    attron(COLOR_PAIR(3));
                     c = laser;
                 }
                 mvaddch(i, j, c);
-                attroff(COLOR_PAIR(1));
+                attroff(COLOR_PAIR(3));
             }
 
             /*}else if (c == shooter) {

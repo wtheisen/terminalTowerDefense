@@ -81,7 +81,7 @@ int isEnemy(char c)
 
 int isShooter(char c)
 {
-    if (c == shooter) return 1;
+    if (strchr("NESW", c) != NULL) return 1;
     return 0;
 }
 

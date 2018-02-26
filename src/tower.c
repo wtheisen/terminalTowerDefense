@@ -8,6 +8,7 @@ tower * newTower(int x, int y)
     t->x = x;
     t->y = y;
     t->shoot = shoot;
+    t->rotate = rotate;
 
     return t;
 }
@@ -37,7 +38,7 @@ int shoot(tower * self)
             writeLog("east");
             for (i = 1; i < 4; i++) {
                 if (i < SIZE) {
-                    projectileLayer[self->x][self->y - i] = 'b';
+                    projectileLayer[self->x][self->y + i] = 'b';
                 }
             }
             break;
@@ -45,11 +46,30 @@ int shoot(tower * self)
             writeLog("west");
             for (i = 1; i < 4; i++) {
                 if (i < SIZE) {
-                    projectileLayer[self->x][self->y + i] = 'b';
+                    projectileLayer[self->x][self->y - i] = 'b';
                 }
             }
             break;
     }
 
     return 0;
+}
+
+void rotate(tower * self)
+{
+    switch(self->fireDir)
+    {
+        case NORTH:
+            self->fireDir = EAST;
+            break;
+        case EAST:
+            self->fireDir = SOUTH;
+            break;
+        case SOUTH:
+            self->fireDir = WEST;
+            break;
+        case WEST:
+            self->fireDir = NORTH;
+            break;
+    }
 }

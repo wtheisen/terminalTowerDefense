@@ -1,6 +1,7 @@
 #ifndef engine_h
 #define engine_h
 
+#include <string.h>
 #include "levelGen.h"
 
 extern int enemiesReached;

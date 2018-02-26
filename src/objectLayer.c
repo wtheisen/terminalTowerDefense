@@ -53,11 +53,17 @@ void moveObject(int oldX, int oldY, int newX, int newY)
     writeLog("Moved Enemy Object on Object Layer");
 }
 
+void rotateObject(int x, int y)
+{
+    tower *t = objLayer[x][y];
+    t->rotate(t);
+}
+
 void deleteObject(int x, int y)
 {
-    
+
     free(objLayer[x][y]);
-    
+
     objLayer[x][y] = (void *) NULL;
     writeLog("Removed Enemy Object from Object Layer");
 }

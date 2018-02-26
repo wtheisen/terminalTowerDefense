@@ -35,7 +35,7 @@ void levelGen(char level[SIZE][SIZE])
 
 
     for (i = 0; i < lvlW; i++, currSegLen++) {
-        if (currSegLen  >= 3 && i + 2 <= lvlW) {
+        if (currSegLen  >= 2 && i + 2 <= lvlW) {
             if (currDir == 0) {
                 currDir = rand() % 3;
             } else {
@@ -48,7 +48,7 @@ void levelGen(char level[SIZE][SIZE])
 
         if (currDir != 0) {
             setCoord(level, currRow, i, path);
-            for (j = 0; j <= 3; j++) {
+            for (j = 0; j < 3; j++) {
                 if (currDir == 2) {
                     //printf("drawing up\n");
                     if (currRow - 2 <= 0) {
