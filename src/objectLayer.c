@@ -30,7 +30,10 @@ void addObject(void * o, int type)
 
 int activateObject(int type, int x, int y)
 {
-    writeLog("activating object");
+    char buffer[100];
+    sprintf(buffer, "Activating object at %d,%d", x, y);
+    writeLog(buffer);
+
     if (type == 1) {
         tower *t = objLayer[x][y];
         t->shoot(t);
@@ -52,8 +55,9 @@ void moveObject(int oldX, int oldY, int newX, int newY)
 
 void deleteObject(int x, int y)
 {
+    
     free(objLayer[x][y]);
-
+    
     objLayer[x][y] = (void *) NULL;
     writeLog("Removed Enemy Object from Object Layer");
 }

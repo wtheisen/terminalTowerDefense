@@ -91,10 +91,14 @@ void fireShooter(int x, int y)
     activateObject(1, x, y);
 }
 
-int hitWalker(int x, int y)
+int hitWalker(char level[SIZE][SIZE], int x, int y)
 {
-    writeLog("hitting enemy");
-    return activateObject(2, x, y);
+    int ret = activateObject(2, x, y);
+    if (ret == 0) {
+        level[x][y] = path;
+        writeLog("Removing enemy!");
+    }
+    return ret;
 }
 
 void advanceEnemy(char level[SIZE][SIZE], int i, int j)
@@ -149,3 +153,4 @@ int isValid(int x)
     if (x < 0 || x >= SIZE) return 0;
     return 1;
 }
+

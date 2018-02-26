@@ -39,6 +39,8 @@ enemy * newEnemy(int x, int y)
 
 int hit(enemy * self)
 {
+    writeLog("Hit called");
+
     self->hp--;
 
     if (self->hp <= 0) {
