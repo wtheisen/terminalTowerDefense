@@ -15,7 +15,7 @@ int drawGrid(char level[SIZE][SIZE])
             char c = level[i][j];
             if (c == crumb2 || c == crumb1) c = path;
             if (c == walker) {
-                attron(COLOR_PAIR(2));
+                attron(COLOR_PAIR(1));
                 if (projectileLayer[i][j] == 'b') {
                     writeLog("enemy - laser collision");
                     if (hitWalker(level, i, j)) {
@@ -25,14 +25,20 @@ int drawGrid(char level[SIZE][SIZE])
                 } else {
                     mvaddch(i, j, walker);
                 }
+                attroff(COLOR_PAIR(1));
+            }else if (c == shooter) {
+                attron(COLOR_PAIR(2));
+                mvaddch(i, j, c);
                 attroff(COLOR_PAIR(2));
             } else {
                 if (projectileLayer[i][j] == 'b') {
+                    attron(COLOR_PAIR(1));
                     c = laser;
                 }
                 mvaddch(i, j, c);
-            } 
-            
+                attroff(COLOR_PAIR(1));
+            }
+
             /*}else if (c == shooter) {
                 attron(COLOR_PAIR(2));
                 mvaddch(i, j, c);
@@ -40,7 +46,7 @@ int drawGrid(char level[SIZE][SIZE])
             } else {
                 mvaddch(i, j, c);
             } */
-            
+
         }
     }
 
