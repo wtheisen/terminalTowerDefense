@@ -51,7 +51,7 @@ int main(int argc, char * argv[])
     char level[SIZE][SIZE];
     levelGen(level);
     int enemiesInWave = 3;
-    currWave = 0;
+    currWave = 1;
 
     while (!stop)
     {
