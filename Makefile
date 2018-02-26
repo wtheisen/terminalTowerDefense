@@ -8,6 +8,9 @@ src=src
 all:
 	$(cc) $(src)/* -o $(binary) $(cflags) $(libs)
 
+debug: all
+	valgrind --log-file="valgrind.log" ./$(binary)
+
 clean:
 	rm -f $(binary)
 
