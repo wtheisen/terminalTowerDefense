@@ -54,6 +54,7 @@ int main(int argc, char * argv[])
     defProjLayer();
 
     int spawnFactor = 5;
+    enemiesSpawnedWave = 0;
 
     while (!stop) {
         sleep(1);

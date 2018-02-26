@@ -6,11 +6,12 @@
 
 extern int enemiesReached;
 extern int enemiesKilled;
+extern int enemiesSpawnedWave;
 extern int currEnergy;
 char projectileLayer[SIZE][SIZE];
 
 void defProjLayer();
-void advanceGame(char level[SIZE][SIZE], int spawnFactor);
+int advanceGame(char level[SIZE][SIZE], int spawnFactor);
 
 void spawnEnemy(char level[SIZE][SIZE]);
 int isEnemy(char c);

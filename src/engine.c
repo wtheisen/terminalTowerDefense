@@ -7,6 +7,7 @@
 
 int enemiesReached = 0;
 int enemiesKilled = 0;
+int enemiesSpawnedWave = 0;
 
 void defProjLayer()
 {
@@ -18,7 +19,7 @@ void defProjLayer()
     }
 }
 
-void advanceGame(char level[SIZE][SIZE], int spawnFactor)
+int advanceGame(char level[SIZE][SIZE], int spawnFactor)
 {
 
     int i, j;
@@ -47,9 +48,13 @@ void advanceGame(char level[SIZE][SIZE], int spawnFactor)
         }
     }
 
-    if (ctr % spawnFactor == 0) spawnEnemy(level);
+    if (ctr % spawnFactor == 0) {
+        spawnEnemy(level);
+        enemiesSpawnedWave++;
+    }
 
     ctr++;
+    return enemiesSpawnedWave;
 }
 
 void spawnEnemy(char level[SIZE][SIZE])
