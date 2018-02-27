@@ -1,7 +1,7 @@
 binary=game
 log=valgrind.log
 cc=gcc
-cflags= -std=c99 -O2 -Wextra -Wall -Iinclude/ -g
+cflags= -std=gnu99 -O2 -Wextra -Wall -Iinclude/ -g
 main=main.c
 libs=-lncurses
 src=src

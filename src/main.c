@@ -63,7 +63,7 @@ int main(int argc, char * argv[])
         defProjLayer();
 
         while (enemiesSpawnedWave < enemiesInWave) {
-            sleep(1);
+            usleep(666666);
             enemiesSpawnedWave = advanceGame(level, spawnFactor);
             enemiesRemaining = enemiesInWave - enemiesSpawnedWave;
             drawGrid(level);
