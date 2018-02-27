@@ -2,6 +2,7 @@
 #include "engine.h"
 #include "levelGen.h"
 #include "mouse.h"
+#include "objectLayer.h"
 #include "symbols.h"
 #include "logging.h"
 
@@ -21,10 +22,15 @@ int drawGrid(char level[SIZE][SIZE])
                     if (hitWalker(level, i, j)) {
                         attroff(COLOR_PAIR(1));
                         attron(COLOR_PAIR(3));
-                        mvaddch(i, j, walker);
+                        enemy * e;
+                        e = objLayer[i][j];
+                        mvaddch(i, j, e->hp + '0');
                     }
                 } else {
-                    mvaddch(i, j, walker);
+                    enemy * e;
+                    e = objLayer[i][j];
+                    mvaddch(i, j, e->hp + '0');
+                    //mvaddch(i, j, walker);
                 }
                 attroff(COLOR_PAIR(1));
                 attroff(COLOR_PAIR(3));
@@ -56,14 +62,6 @@ int drawGrid(char level[SIZE][SIZE])
                 attroff(COLOR_PAIR(3));
             }
 
-            /*}else if (c == shooter) {
-                attron(COLOR_PAIR(2));
-                mvaddch(i, j, c);
-                attroff(COLOR_PAIR(2));
-            } else {
-                mvaddch(i, j, c);
-            } */
-
         }
     }
 
@@ -74,6 +72,7 @@ int drawGrid(char level[SIZE][SIZE])
     } else {
         mvprintw(1, SIZE + 2, "Killed:  %d           ", enemiesKilled);
         mvprintw(3, SIZE + 2, "Reached: %d", enemiesReached);
+        mvprintw(5, SIZE + 2, "               ");
         mvprintw(5, SIZE + 2, "Energy:  %d", currEnergy);
     }
 
