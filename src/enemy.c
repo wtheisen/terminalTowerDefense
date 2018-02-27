@@ -8,7 +8,7 @@ enemy * newEnemy(int x, int y)
     e->type = 2;
     e->x = x;
     e->y = y;
-    e->hp = 1;
+    e->hp = 3;
     e->hit = hit;
 
     return e;
