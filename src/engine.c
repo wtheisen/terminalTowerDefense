@@ -51,8 +51,10 @@ int advanceGame(char level[SIZE][SIZE], int spawnFactor)
     }
 
     if (ctr % spawnFactor == 0) {
-        spawnEnemy(level);
-        enemiesSpawnedWave++;
+        if (enemiesRemaining > 0) {
+            spawnEnemy(level);
+            enemiesSpawnedWave++;
+        }
     }
 
     ctr++;
@@ -164,3 +166,18 @@ int isValid(int x)
     return 1;
 }
 
+int getEnemiesOnBoard(char level[SIZE][SIZE]) 
+{
+    int i, j;
+    int count = 0;
+
+    for (i = 0; i < SIZE; ++i) {
+        for (j = 0; j < SIZE; ++j) {
+            if (level[i][j] == walker) {
+                count++;
+            }
+        }
+    }
+
+    return count;
+}
