@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <unistd.h>
-
+#include <string.h>
 #include "logging.h"
 
 
@@ -44,8 +44,15 @@ void writeLogLong(const int lineNum, const char * callFunc, char * message)
     char timeStr[50];
     time_t curTime = time(0);
     strftime(timeStr, 50, "%H:%M:%S", localtime(&curTime));
-    if (!fprintf(logFilePtr, "%s:%d -- %s -- %s\n", callFunc, lineNum, timeStr, message)) {
-        printf("Error writing to log...");
+
+    if (strlen(callFunc) < 7) {
+        if (!fprintf(logFilePtr, "%s:\t\t%d\t -- %s -- %s\n", callFunc, lineNum, timeStr, message)) {
+            printf("Error writing to log...");
+        } 
+    } else {
+        if (!fprintf(logFilePtr, "%s:\t%d\t -- %s -- %s\n", callFunc, lineNum, timeStr, message)) {
+            printf("Error writing to log...");
+        }
     }
     fflush(logFilePtr);
     /* fprintf(logFilePtr, "%s -- %s -- %s\n", message, timeStr, __func__); */
