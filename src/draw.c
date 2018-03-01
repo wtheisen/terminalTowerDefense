@@ -16,7 +16,17 @@ int drawGrid(char level[SIZE][SIZE])
             char c = level[i][j];
             if (c == crumb2 || c == crumb1) c = path;
             if (c == walker) {
-                attron(COLOR_PAIR(1));
+                if (getHP(i, j) >= 4) {
+                    attron(COLOR_PAIR(6));    
+                }
+                else if (getHP(i, j) == 3) {
+                    attron(COLOR_PAIR(5));
+                }
+                else if (getHP(i, j) == 2) {
+                    attron(COLOR_PAIR(4));
+                } else if (getHP(i, j) == 1) {
+                    attron(COLOR_PAIR(1));
+                }
                 if (projectileLayer[i][j] == 'b') {
                     writeLog("enemy - laser collision");
                     if (hitWalker(level, i, j)) {

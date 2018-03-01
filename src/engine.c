@@ -77,8 +77,15 @@ start_found: ;
     getPathAround(level, i, j, &pathx, &pathy);
     if (pathx >= 0 || pathy >= 0) {
         level[pathx][pathy] = walker;
+        int hp = 3;
 
-        enemy * e = newEnemy(pathx, pathy);
+        if (rand() % 4 == 0) {
+            hp = 4;
+        } else {
+            hp = 2;
+        }
+
+        enemy * e = newEnemy(pathx, pathy, hp);
         addObject((void *) e, e->type);
     }
 }
@@ -180,4 +187,9 @@ int getEnemiesOnBoard(char level[SIZE][SIZE])
     }
 
     return count;
+}
+
+int getHP(int i, int j) {
+    enemy* e = (enemy*)objLayer[i][j];
+    return e->hp;
 }

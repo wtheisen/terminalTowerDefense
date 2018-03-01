@@ -2,13 +2,13 @@
 
 #include "enemy.h"
 
-enemy * newEnemy(int x, int y)
+enemy * newEnemy(int x, int y, int hp)
 {
     enemy * e = malloc(sizeof(*e));
     e->type = 2;
     e->x = x;
     e->y = y;
-    e->hp = 3;
+    e->hp = hp;
     e->hit = hit;
 
     return e;

@@ -26,5 +26,5 @@ void getPathAround(char level[SIZE][SIZE], int, int, int *, int *);
 
 int isValid(int);
 int getEnemiesOnBoard(char level[SIZE][SIZE]);
-
+int getHP(int, int);
 #endif
