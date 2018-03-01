@@ -1,3 +1,4 @@
+#include <ncurses.h>
 #include "draw.h"
 #include "engine.h"
 #include "levelGen.h"
@@ -77,13 +78,24 @@ int drawGrid(char level[SIZE][SIZE])
 
     defProjLayer();
 
+    start_color();
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+    init_pair(2, COLOR_CYAN, COLOR_BLACK);
+    init_pair(3, COLOR_GREEN, COLOR_BLACK);
+    
     if (currEnergy > 0 && enemiesKilled == 0) {
         mvprintw(1, SIZE +2, "Place %d more towers!", currEnergy / 5);
     } else {
-        mvprintw(1, SIZE + 2, "Killed:  %d           ", enemiesKilled);
-        mvprintw(3, SIZE + 2, "Reached: %d", enemiesReached);
-        mvprintw(5, SIZE + 2, "               ");
-        mvprintw(5, SIZE + 2, "Energy:  %d", currEnergy);
+    	attron(COLOR_PAIR(1));
+            mvprintw(1, SIZE + 2, "Killed:  %d           ", enemiesKilled);
+    	attroff(COLOR_PAIR(1));
+    	attron(COLOR_PAIR(2));
+            mvprintw(3, SIZE + 2, "Reached: %d", enemiesReached);
+    	attroff(COLOR_PAIR(2));
+            mvprintw(5, SIZE + 2, "               ");
+    	attron(COLOR_PAIR(3));
+            mvprintw(5, SIZE + 2, "Energy:  %d", currEnergy);
+    	attroff(COLOR_PAIR(3));
     }
 
     mvprintw(SIZE + 1, SIZE / 3, "Enemies Remaining in Wave %d:  %d", currWave, enemiesRemaining);
