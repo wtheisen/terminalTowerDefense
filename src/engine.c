@@ -191,5 +191,8 @@ int getEnemiesOnBoard(char level[SIZE][SIZE])
 
 int getHP(int i, int j) {
     enemy* e = (enemy*)objLayer[i][j];
-    return e->hp;
+    if (e->hp)
+        return e->hp;
+    else 
+        return 0;
 }
