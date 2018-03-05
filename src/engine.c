@@ -131,6 +131,10 @@ void advanceEnemy(char level[SIZE][SIZE], int i, int j)
         level[pathx][pathy] = walker - 32;
         moveObject(i, j, pathx, pathy);
     } else {
+        char buffer[100];
+        sprintf(buffer, "No path from %d,%d", i, j);
+        writeLog(buffer);
+
         //we are one char away from the end
         level[i][j] = path;
         deleteObject(i, j);

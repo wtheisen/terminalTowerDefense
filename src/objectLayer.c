@@ -51,8 +51,18 @@ int activateObject(int type, int x, int y)
 
 void moveObject(int oldX, int oldY, int newX, int newY)
 {
-    objLayer[newX][newY] = objLayer[oldX][oldY];
-    objLayer[oldX][oldY] = (void *) NULL;
+    if (!objLayer[oldX][oldY]) {
+        char buffer[100];
+        sprintf(buffer, "Spaghetti: %d,%d -- %d, %d", oldX, oldY, newX, newY); 
+        writeLog(buffer);
+        enemy * e = newEnemy(newX, newY, 3);        
+        addObject((void *) e, e->type); 
+    } else {
+        objLayer[newX][newY] = objLayer[oldX][oldY];
+        objLayer[oldX][oldY] = (void *) NULL;
+    }
+    
+    if (!objLayer[newX][newY]) writeLog("Moved object is NULL");
 
     writeLog("Moved Enemy Object on Object Layer");
 }
