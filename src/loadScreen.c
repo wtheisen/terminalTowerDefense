@@ -62,7 +62,8 @@ int loadScreen(struct Options * Opt)
        ch = getch();
     }
 
-    system("clear");
+    int ret = system("clear");
+    (void) ret;
     return 1;   
 }
 

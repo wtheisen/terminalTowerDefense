@@ -33,14 +33,14 @@ int drawGrid(char level[SIZE][SIZE])
                     if (hitWalker(level, i, j)) {
                         attroff(COLOR_PAIR(1));
                         attron(COLOR_PAIR(3));
-                        enemy * e;
-                        e = objLayer[i][j];
-                        mvaddch(i, j, e->hp + '0');
+                        //enemy * e;
+                        //e = objLayer[i][j];
+                        mvaddch(i, j, getHP(i,j) + '0');
                     }
                 } else {
-                    enemy * e;
-                    e = objLayer[i][j];
-                    mvaddch(i, j, e->hp + '0');
+                    //enemy * e;
+                    //e = objLayer[i][j];
+                    mvaddch(i, j, getHP(i, j) + '0');
                     //mvaddch(i, j, walker);
                 }
                 attroff(COLOR_PAIR(1));
