@@ -86,14 +86,14 @@ int main(int argc, char * argv[])
             break;
         }
 
-            usleep(100000);
+            usleep(666666);
             enemiesSpawnedWave = advanceGame(level, spawnFactor);
             enemiesRemaining = enemiesInWave - enemiesSpawnedWave;
             drawGrid(level);
         }
 
         while (getEnemiesOnBoard(level) && stop) {
-            usleep(100000);
+            usleep(666666);
             advanceGame(level, 100000);
             drawGrid(level); 
         }
