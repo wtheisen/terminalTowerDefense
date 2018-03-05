@@ -77,6 +77,7 @@ start_found: ;
     getPathAround(level, i, j, &pathx, &pathy);
     if (pathx >= 0 || pathy >= 0) {
         level[pathx][pathy] = walker;
+        
         int hp = 3;
 
         if (rand() % 4 == 0) {
@@ -87,6 +88,10 @@ start_found: ;
 
         enemy * e = newEnemy(pathx, pathy, hp);
         addObject((void *) e, e->type);
+        
+        char buffer[100];
+        sprintf(buffer, "spaghetti: %d", getHP(pathx, pathy));
+        writeLog(buffer); 
     }
 }
 
@@ -195,6 +200,7 @@ int getEnemiesOnBoard(char level[SIZE][SIZE])
 
 int getHP(int i, int j) {
     if (!objLayer[i][j]) return 0;
+    
     enemy* e = (enemy*)objLayer[i][j];    
     return e->hp;
 }

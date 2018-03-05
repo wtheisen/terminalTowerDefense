@@ -21,6 +21,9 @@ int hit(enemy * self)
     self->hp--;
 
     if (self->hp <= 0) {
+        char buffer[100];
+        sprintf(buffer, "Deleting enemy at: %d, %d", self->x, self->y);
+        writeLog(buffer);
         deleteObject(self->x, self->y);
         return 1;
     }

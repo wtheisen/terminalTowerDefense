@@ -51,6 +51,10 @@ int activateObject(int type, int x, int y)
 
 void moveObject(int oldX, int oldY, int newX, int newY)
 {
+    
+    ((enemy *) objLayer[oldX][oldY])->x = newX;
+    ((enemy *) objLayer[oldX][oldY])->y = newY;
+
     if (!objLayer[oldX][oldY]) {
         char buffer[100];
         sprintf(buffer, "Spaghetti: %d,%d -- %d, %d", oldX, oldY, newX, newY); 
