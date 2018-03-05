@@ -61,6 +61,12 @@ int main(int argc, char * argv[])
 
     while (!stop)
     {
+	if (enemiesReached >= 10)
+	{
+		stop = 0;
+		break;
+	}
+
         int spawnFactor = 5;
         enemiesSpawnedWave = 0;
 
@@ -74,13 +80,19 @@ int main(int argc, char * argv[])
         // enemiesSpawnedWave = enemies spawned thus far 
         
         while(enemiesRemaining) {
+	    if (enemiesReached == 10)
+        {
+            stop = 0;
+            break;
+        }
+
             usleep(100000);
             enemiesSpawnedWave = advanceGame(level, spawnFactor);
             enemiesRemaining = enemiesInWave - enemiesSpawnedWave;
             drawGrid(level);
         }
 
-        while (getEnemiesOnBoard(level)) {
+        while (getEnemiesOnBoard(level) && stop) {
             usleep(100000);
             advanceGame(level, 100000);
             drawGrid(level); 
