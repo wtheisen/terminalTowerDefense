@@ -29,7 +29,7 @@ int loadScreen(struct Options * Opt)
     char msg9[] = " / /_/ /  __/ __/  __/ / / (__  )  __/";
     char msg10[]= "/_____/\\___/_/  \\___/_/ /_/____/\\___/";
 
-    char msg_intro[] = "Developed by Alex Brizius, Bill Theisen, Mike Burke and Jose Badilla";
+    char msg_intro[] = "Developed by Alex Brizius, Bill Theisen, Michael Burke and Jose Badilla";
     char msg_instruction[] = "(Press enter to play)";
 
     int row, col;
